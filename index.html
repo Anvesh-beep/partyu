@@ -433,7 +433,7 @@ footer{position:relative;z-index:10;text-align:center;padding:5vh 5vw;border-top
   <span class="footer-txt">✦ &nbsp; THE LEGEND WAS BORN · YOU ARE INVITED · 25 APRIL 2025 &nbsp; ✦</span>
 </footer>
 
-<script type="module">
+<script>
 /* CURSOR */
 const cur=document.getElementById('cur');
 let stk=0;
@@ -719,7 +719,11 @@ window.addEventListener('scroll',()=>{if(hImg)hImg.style.transform=`translateY($
 
 function openMaps(){window.open('https://www.google.com/maps/search/?api=1&query=Tulasi+Vanam+Block-A+Kukatpally+Hyderabad+Telangana+500072','_blank');}
 
-/* ═══════════ FIREBASE STATS ═══════════ */
+/* placeholder — Firebase module below fills this in */
+window.trackBall=function(){};
+</script>
+
+<script type="module">
 import {initializeApp} from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {getDatabase,ref,runTransaction,get} from"https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
@@ -736,10 +740,10 @@ const firebaseConfig={
 const fbApp=initializeApp(firebaseConfig);
 const db=getDatabase(fbApp);
 
-function trackBall(result){
+window.trackBall=function(result){
   const statsRef=ref(db,'cricket_stats');
   runTransaction(statsRef,current=>{
-    if(!current){current={total_balls:0,sixes:0,fours:0,twos:0,ones:0,wickets:0,dots:0};}
+    if(!current)current={total_balls:0,sixes:0,fours:0,twos:0,ones:0,wickets:0,dots:0};
     current.total_balls=(current.total_balls||0)+1;
     if(result==='six')current.sixes=(current.sixes||0)+1;
     else if(result==='four')current.fours=(current.fours||0)+1;
@@ -749,11 +753,24 @@ function trackBall(result){
     else if(result==='dot')current.dots=(current.dots||0)+1;
     return current;
   });
-}
+};
 
-/* ═══════════ ADMIN PANEL ═══════════ */
-(function(){
-  if(!window.location.search.includes('admin=swojas'))return;
+window.loadAdminStats=async function(){
+  try{
+    const snap=await get(ref(db,'cricket_stats'));
+    const d=snap.val()||{};
+    document.getElementById('a-total').textContent=d.total_balls||0;
+    document.getElementById('a-sixes').textContent=d.sixes||0;
+    document.getElementById('a-fours').textContent=d.fours||0;
+    document.getElementById('a-twos').textContent=d.twos||0;
+    document.getElementById('a-wickets').textContent=d.wickets||0;
+    document.getElementById('a-dots').textContent=d.dots||0;
+    document.getElementById('admin-updated').textContent='Last updated: '+new Date().toLocaleTimeString();
+  }catch(e){document.getElementById('admin-updated').textContent='Error loading stats';}
+};
+
+/* ADMIN PANEL — only shows if URL has ?admin=swojas */
+if(window.location.search.includes('admin=swojas')){
   const panel=document.createElement('div');
   panel.id='admin-panel';
   panel.innerHTML=`
@@ -762,7 +779,7 @@ function trackBall(result){
         <div style="font-size:2rem;margin-bottom:5px;">👑</div>
         <div style="font-size:1.5rem;color:#FFD700;letter-spacing:3px;margin-bottom:5px;">ADMIN DASHBOARD</div>
         <div style="font-size:.7rem;color:rgba(255,215,0,.4);letter-spacing:5px;margin-bottom:30px;">SWOJAS CRICKET STATS</div>
-        <div id="admin-stats" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:25px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:25px;">
           <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,215,0,.1);border-radius:12px;padding:16px;">
             <div style="font-size:2rem;color:#FFD700;" id="a-total">—</div>
             <div style="font-size:.6rem;color:rgba(255,255,255,.35);letter-spacing:3px;margin-top:4px;">TOTAL BALLS</div>
@@ -796,22 +813,8 @@ function trackBall(result){
       </div>
     </div>`;
   document.body.appendChild(panel);
-  loadAdminStats();
-})();
-
-window.loadAdminStats=async function(){
-  try{
-    const snap=await get(ref(db,'cricket_stats'));
-    const d=snap.val()||{};
-    document.getElementById('a-total').textContent=d.total_balls||0;
-    document.getElementById('a-sixes').textContent=d.sixes||0;
-    document.getElementById('a-fours').textContent=d.fours||0;
-    document.getElementById('a-twos').textContent=d.twos||0;
-    document.getElementById('a-wickets').textContent=d.wickets||0;
-    document.getElementById('a-dots').textContent=d.dots||0;
-    document.getElementById('admin-updated').textContent='Last updated: '+new Date().toLocaleTimeString();
-  }catch(e){document.getElementById('admin-updated').textContent='Error loading stats';}
-};
+  window.loadAdminStats();
+}
 </script>
 </body>
 </html>
