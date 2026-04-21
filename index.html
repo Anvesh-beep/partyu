@@ -182,38 +182,21 @@ body{background:var(--dark);font-family:'Nunito',sans-serif;overflow-x:hidden;cu
 .six-sub{font-family:'Fredoka One',cursive;font-size:clamp(.8rem,2.5vw,1.4rem);color:var(--cream);letter-spacing:6px;margin-top:1.5vh;animation:sixSlam .5s cubic-bezier(.34,1.56,.64,1) .1s both;opacity:0;}
 canvas#fw{position:fixed;inset:0;z-index:8000;pointer-events:none;display:none;}
 
-/* SCRATCH CARD */
-#rsvp-section{padding:8vh 5vw;max-width:1200px;margin:0 auto;text-align:center;}
-.scratch-wrap{display:inline-block;position:relative;margin-top:4vh;user-select:none;}
-.scratch-card{width:clamp(280px,80vw,480px);background:linear-gradient(135deg,#1a0008,#0d000d);border:2px solid rgba(255,215,0,.3);border-radius:20px;padding:30px 25px;text-align:left;position:relative;overflow:hidden;}
-.scratch-card-corner{position:absolute;width:16px;height:16px;}
-.scratch-card-corner.tl{top:8px;left:8px;border-top:1.5px solid var(--gold);border-left:1.5px solid var(--gold);}
-.scratch-card-corner.tr{top:8px;right:8px;border-top:1.5px solid var(--gold);border-right:1.5px solid var(--gold);}
-.scratch-card-corner.bl{bottom:8px;left:8px;border-bottom:1.5px solid var(--gold);border-left:1.5px solid var(--gold);}
-.scratch-card-corner.br{bottom:8px;right:8px;border-bottom:1.5px solid var(--gold);border-right:1.5px solid var(--gold);}
-.sc-show-lbl{font-family:'Fredoka One',cursive;font-size:.55rem;letter-spacing:6px;color:rgba(255,215,0,.4);display:block;margin-bottom:6px;}
-.sc-show-title{font-family:'Fredoka One',cursive;font-size:clamp(1.8rem,5vw,2.8rem);color:var(--gold);line-height:1;display:block;margin-bottom:16px;}
-.sc-details{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
-.sc-d{border:1px solid rgba(255,215,0,.1);padding:12px;border-radius:8px;}
-.sc-d-lbl{font-family:'Fredoka One',cursive;font-size:.5rem;letter-spacing:4px;color:rgba(255,215,0,.3);display:block;margin-bottom:4px;}
-.sc-d-val{font-family:'Fredoka One',cursive;font-size:clamp(1rem,2.5vw,1.3rem);color:var(--white);}
-.sc-cta{display:flex;align-items:center;gap:12px;text-decoration:none;background:var(--gold);color:#000;font-family:'Fredoka One',cursive;font-size:clamp(.9rem,2vw,1.1rem);letter-spacing:3px;padding:14px 24px;border-radius:50px;justify-content:center;transition:all .3s;animation:ctaGlow 2s ease-in-out infinite;}
-.sc-cta:hover{background:var(--red);color:#fff;}
-@keyframes ctaGlow{0%,100%{box-shadow:0 0 20px rgba(255,215,0,.3);}50%{box-shadow:0 0 40px rgba(255,215,0,.6);}}
-.sc-note{font-size:.75rem;color:rgba(255,255,255,.25);letter-spacing:2px;margin-top:10px;display:block;font-style:italic;}
-#scratch-canvas{position:absolute;inset:0;border-radius:18px;cursor:crosshair;z-index:5;}
-.scratch-hint{position:absolute;inset:0;border-radius:18px;z-index:6;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;transition:opacity .5s;}
-.scratch-hint-emoji{font-size:3rem;animation:scratchWobble 1s ease-in-out infinite;}
-@keyframes scratchWobble{0%,100%{transform:rotate(-10deg);}50%{transform:rotate(10deg);}}
-.scratch-hint-text{font-family:'Fredoka One',cursive;font-size:1.2rem;color:var(--white);letter-spacing:3px;margin-top:8px;}
-.scratch-overlay{position:absolute;inset:0;border-radius:18px;z-index:4;background:repeating-linear-gradient(45deg,rgba(255,215,0,.06) 0px,rgba(255,215,0,.06) 1px,transparent 1px,transparent 8px),linear-gradient(135deg,#220010,#15001a,#0a0010);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;}
-.scratch-overlay-text{font-family:'Fredoka One',cursive;font-size:1.5rem;color:var(--gold);letter-spacing:5px;}
-.scratch-overlay-sub{font-size:.75rem;letter-spacing:4px;color:rgba(255,215,0,.4);font-family:'Fredoka One',cursive;}
-
 footer{position:relative;z-index:10;text-align:center;padding:5vh 5vw;border-top:1px solid rgba(255,215,0,.1);}
 .footer-emoji{font-size:2rem;animation:footerSpin 4s linear infinite;display:inline-block;}
 @keyframes footerSpin{to{transform:rotate(360deg);}}
 .footer-txt{font-family:'Fredoka One',cursive;font-size:.75rem;letter-spacing:5px;color:rgba(255,215,0,.3);margin-top:10px;display:block;}
+
+/* CONTACT CARD (replacing RSVP) */
+#contact-section{padding:8vh 5vw;max-width:1200px;margin:0 auto;text-align:center;}
+.contact-card{display:inline-flex;flex-direction:column;align-items:center;gap:20px;background:linear-gradient(135deg,#1a0008,#0d000d);border:2px solid rgba(255,215,0,.3);border-radius:20px;padding:40px 50px;position:relative;overflow:hidden;}
+.contact-card::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,215,0,.02) 0px,rgba(255,215,0,.02) 1px,transparent 1px,transparent 8px);}
+.contact-title{font-family:'Fredoka One',cursive;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--gold);}
+.contact-sub{font-size:.9rem;color:rgba(255,255,255,.4);letter-spacing:2px;}
+.contact-cta{display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--gold);color:#000;font-family:'Fredoka One',cursive;font-size:clamp(.9rem,2vw,1.2rem);letter-spacing:3px;padding:16px 32px;border-radius:50px;transition:all .3s;animation:ctaGlow 2s ease-in-out infinite;}
+.contact-cta:hover{background:var(--red);color:#fff;transform:scale(1.05);}
+@keyframes ctaGlow{0%,100%{box-shadow:0 0 20px rgba(255,215,0,.3);}50%{box-shadow:0 0 50px rgba(255,215,0,.7);}}
+.contact-note{font-size:.75rem;color:rgba(255,255,255,.25);letter-spacing:2px;font-style:italic;}
 
 @media(max-width:768px){
   .hero-photo{display:none;}.hero-photo-mob{display:block;}
@@ -225,7 +208,7 @@ footer{position:relative;z-index:10;text-align:center;padding:5vh 5vw;border-top
 }
 @media(max-width:480px){
   .info-cards{grid-template-columns:1fr;}
-  .sc-details{grid-template-columns:1fr;}
+  .contact-card{padding:30px 25px;}
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
@@ -267,7 +250,7 @@ footer{position:relative;z-index:10;text-align:center;padding:5vh 5vw;border-top
     <span class="hero-tagline">"He didn't choose cricket. Cricket chose him."</span>
     <div class="hero-cta-row">
       <button class="hero-btn primary" onclick="event.stopPropagation();document.getElementById('cd-section').scrollIntoView({behavior:'smooth'})">⏳ Countdown</button>
-      <button class="hero-btn secondary" onclick="event.stopPropagation();document.getElementById('rsvp-section').scrollIntoView({behavior:'smooth'})">📲 RSVP Now</button>
+      <button class="hero-btn secondary" onclick="event.stopPropagation();document.getElementById('contact-section').scrollIntoView({behavior:'smooth'})">📲 Contact</button>
     </div>
   </div>
   <div class="hero-scroll-hint">
@@ -285,7 +268,7 @@ footer{position:relative;z-index:10;text-align:center;padding:5vh 5vw;border-top
 <!-- INFO CARDS -->
 <div class="info-strip">
   <div class="info-cards">
-    <div class="icard rv"><span class="icard-icon">📅</span><span class="icard-label">Date</span><span class="icard-val">25 April 2025</span><span class="icard-sub">Friday — Mark your calendar!</span></div>
+    <div class="icard rv"><span class="icard-icon">📅</span><span class="icard-label">Date</span><span class="icard-val">25 April 2026</span><span class="icard-sub">Friday — Mark your calendar!</span></div>
     <div class="icard rv" style="transition-delay:.1s"><span class="icard-icon">⏰</span><span class="icard-label">Start Time</span><span class="icard-val">6:00 PM Sharp</span><span class="icard-sub">Don't be the one who's late 😅</span></div>
     <div class="icard rv" style="transition-delay:.2s"><span class="icard-icon">🎂</span><span class="icard-label">The Birthday Boy</span><span class="icard-val">SWOJAS</span><span class="icard-sub">Turning 11 — Level UP! 🎮</span></div>
     <div class="icard map-card rv" onclick="openMaps()" style="transition-delay:.3s"><span class="icard-icon">📍</span><span class="icard-label">Venue</span><span class="icard-val">Bhavya's Tulasivanam</span><span class="icard-sub">A-806, Tulasi Vanam Block-A<br>Kukatpally, Hyderabad — 500072</span><span class="map-badge">🗺 TAP TO OPEN MAPS</span></div>
@@ -395,35 +378,15 @@ footer{position:relative;z-index:10;text-align:center;padding:5vh 5vw;border-top
   </div>
 </div></div>
 
-<!-- RSVP SCRATCH CARD -->
-<div id="rsvp-section">
+<!-- CONTACT -->
+<div id="contact-section">
   <span class="sec-tag rv">Confirm Attendance</span>
-  <div class="sec-title rv">🎟 Your <span class="hl">Invite</span></div>
-  <p class="rv" style="color:rgba(255,255,255,.4);font-size:1rem;margin-bottom:0;">Scratch to reveal your ticket! 👇</p>
-  <div class="scratch-wrap rv" id="scratch-wrap">
-    <div class="scratch-card" id="scratch-card">
-      <div class="scratch-card-corner tl"></div><div class="scratch-card-corner tr"></div>
-      <div class="scratch-card-corner bl"></div><div class="scratch-card-corner br"></div>
-      <span class="sc-show-lbl">BIRTHDAY PREMIERE · 2025</span>
-      <span class="sc-show-title">SWOJAS<br>TURNS XI 🎂</span>
-      <div class="sc-details">
-        <div class="sc-d"><span class="sc-d-lbl">DATE</span><span class="sc-d-val">25 April 2025</span></div>
-        <div class="sc-d"><span class="sc-d-lbl">TIME</span><span class="sc-d-val">6:00 PM</span></div>
-        <div class="sc-d"><span class="sc-d-lbl">VENUE</span><span class="sc-d-val">Bhavya's A-806</span></div>
-        <div class="sc-d"><span class="sc-d-lbl">DRESS CODE</span><span class="sc-d-val">Legendary 👑</span></div>
-      </div>
-      <a class="sc-cta" href="tel:+917977524464">📲 &nbsp;+91 79775 24464</a>
-      <span class="sc-note">⚠ Attendance is not optional. It is destiny.</span>
-    </div>
-    <div class="scratch-overlay" id="scratch-overlay">
-      <span class="scratch-overlay-text">✨ YOUR INVITE ✨</span>
-      <span class="scratch-overlay-sub">SCRATCH TO REVEAL</span>
-    </div>
-    <canvas id="scratch-canvas"></canvas>
-    <div class="scratch-hint" id="scratch-hint">
-      <div class="scratch-hint-emoji">💅</div>
-      <div class="scratch-hint-text">SCRATCH HERE!</div>
-    </div>
+  <div class="sec-title rv">📲 <span class="hl">RSVP</span> Now</div>
+  <div class="contact-card rv">
+    <div class="contact-title">👑 You're Invited!</div>
+    <div class="contact-sub">CALL OR WHATSAPP TO CONFIRM YOUR ATTENDANCE</div>
+    <a class="contact-cta" href="tel:+917977524464">📲 &nbsp;+91 79775 24464</a>
+    <span class="contact-note">⚠ Attendance is not optional. It is destiny.</span>
   </div>
 </div>
 
@@ -504,7 +467,7 @@ const hf=document.getElementById('hero-flash-el');
 function heroFlash(){hf.style.opacity='0.9';setTimeout(()=>hf.style.opacity='0',400);}
 
 /* TICKER */
-const tItems=['🏏 SWOJAS TURNS 11','⚡ 25 APRIL · 6PM SHARP','📍 BHAVYA\'S TULASIVANAM · A-806 KUKATPALLY HYD','🔥 ATTENDANCE COMPULSORY','🎂 CAKE + GAMES + FOOD + MUSIC','💥 ZERO EXCUSES ALLOWED','👑 THE LEGEND IS CORONATED','🎮 LEVEL 11 UNLOCKED','🏆 THE MATCH OF THE CENTURY','📞 RSVP: +91 79775 24464'];
+const tItems=['🏏 SWOJAS TURNS 11','⚡ 25 APRIL 2026 · 6PM SHARP','📍 BHAVYA\'S TULASIVANAM · A-806 KUKATPALLY HYD','🔥 ATTENDANCE COMPULSORY','🎂 CAKE + GAMES + FOOD + MUSIC','💥 ZERO EXCUSES ALLOWED','👑 THE LEGEND IS CORONATED','🎮 LEVEL 11 UNLOCKED','🏆 THE MATCH OF THE CENTURY','📞 RSVP: +91 79775 24464'];
 const ti=document.getElementById('ticker-inner');
 ti.innerHTML=[...tItems,...tItems].map(t=>`<span class="ti">${t} &nbsp;·&nbsp; </span>`).join('');
 
@@ -513,17 +476,24 @@ const rvEls=document.querySelectorAll('.rv,.rv-l,.rv-r');
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 rvEls.forEach(e=>io.observe(e));
 
-/* COUNTDOWN */
+/* COUNTDOWN — target: 25 April 2026 at 6:00 PM IST (12:30 UTC) */
 function tick(){
-  const target=new Date('2025-04-25T12:30:00Z'),now=new Date(),d=target-now;
+  const target=new Date('2026-04-25T12:30:00Z'),now=new Date(),d=target-now;
   const fn=n=>String(Math.max(0,n)).padStart(2,'0');
-  if(d<=0){['cd-d','cd-h','cd-m','cd-s'].forEach(id=>document.getElementById(id).textContent='00');return;}
+  if(d<=0){
+    document.getElementById('cd-d').textContent='00';
+    document.getElementById('cd-h').textContent='00';
+    document.getElementById('cd-m').textContent='00';
+    document.getElementById('cd-s').textContent='00';
+    return;
+  }
   document.getElementById('cd-d').textContent=fn(Math.floor(d/86400000));
   document.getElementById('cd-h').textContent=fn(Math.floor(d%86400000/3600000));
   document.getElementById('cd-m').textContent=fn(Math.floor(d%3600000/60000));
   document.getElementById('cd-s').textContent=fn(Math.floor(d%60000/1000));
   setTimeout(tick,1000);
-}tick();
+}
+tick();
 
 /* CRICKET GAME */
 let runs=0,balls=0,wickets=0,streak=0,gamePhase='idle';
@@ -532,7 +502,6 @@ const ball=document.getElementById('game-ball');
 const msg=document.getElementById('game-msg');
 const bowlBtn=document.getElementById('bowl-btn');
 const wicketEl=document.getElementById('wicket-el');
-const batGrp=document.getElementById('bat-group');
 
 function updateScore(){
   document.getElementById('gs-runs').textContent=runs;
@@ -665,52 +634,6 @@ function launchFW(){
   function d(){ctx.clearRect(0,0,cv.width,cv.height);ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.06;p.a-=.016;if(p.a<0)return;ctx.globalAlpha=p.a;ctx.fillStyle=p.c;ctx.beginPath();ctx.arc(p.x,p.y,p.sz,0,Math.PI*2);ctx.fill();});if(++f<100)requestAnimationFrame(d);else{cv.style.display='none';ctx.clearRect(0,0,cv.width,cv.height);}}
   d();
 }
-
-/* SCRATCH CARD */
-(function(){
-  const canvas=document.getElementById('scratch-canvas');
-  const overlay=document.getElementById('scratch-overlay');
-  const hint=document.getElementById('scratch-hint');
-  const card=document.getElementById('scratch-card');
-  let scratched=false,isDrawing=false;
-
-  function sizeCanvas(){
-    const r=card.getBoundingClientRect();
-    canvas.width=r.width;canvas.height=r.height;
-    canvas.style.width=r.width+'px';canvas.style.height=r.height+'px';
-  }
-  function getPos(e){
-    const r=canvas.getBoundingClientRect();
-    const src=e.touches?e.touches[0]:e;
-    return{x:src.clientX-r.left,y:src.clientY-r.top};
-  }
-  function scratch(x,y){
-    const ctx=canvas.getContext('2d');
-    ctx.globalCompositeOperation='destination-out';
-    ctx.beginPath();ctx.arc(x,y,32,0,Math.PI*2);ctx.fill();
-    checkReveal();
-  }
-  function checkReveal(){
-    if(scratched)return;
-    const ctx=canvas.getContext('2d');
-    const data=ctx.getImageData(0,0,canvas.width,canvas.height).data;
-    let cleared=0;
-    for(let i=3;i<data.length;i+=4)if(data[i]===0)cleared++;
-    if((cleared/(canvas.width*canvas.height))*100>40){
-      scratched=true;hint.style.opacity='0';
-      overlay.style.transition='opacity .8s ease';overlay.style.opacity='0';
-      setTimeout(()=>{overlay.style.display='none';canvas.style.display='none';},800);
-      spawnHitParts();
-    }
-  }
-  canvas.addEventListener('mousedown',e=>{isDrawing=true;const p=getPos(e);scratch(p.x,p.y);hint.style.opacity='0';});
-  canvas.addEventListener('mousemove',e=>{if(!isDrawing)return;const p=getPos(e);scratch(p.x,p.y);});
-  canvas.addEventListener('mouseup',()=>isDrawing=false);
-  canvas.addEventListener('touchstart',e=>{e.preventDefault();isDrawing=true;const p=getPos(e);scratch(p.x,p.y);hint.style.opacity='0';},{passive:false});
-  canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!isDrawing)return;const p=getPos(e);scratch(p.x,p.y);},{passive:false});
-  canvas.addEventListener('touchend',()=>isDrawing=false);
-  setTimeout(sizeCanvas,200);window.addEventListener('resize',sizeCanvas);
-})();
 
 /* PARALLAX */
 const hImg=document.getElementById('h-img');
