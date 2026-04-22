@@ -52,22 +52,6 @@ body{background:var(--dark);font-family:'Nunito',sans-serif;overflow-x:hidden;cu
 @keyframes nlDrop{to{opacity:1;transform:translateY(0) rotate(0);}}
 .hero-turns{font-family:'Fredoka One',cursive;font-size:clamp(1.2rem,3.5vw,2.5rem);color:var(--red);letter-spacing:3px;display:block;margin-top:1vh;opacity:0;animation:fadeUp .8s ease 3.2s forwards;}
 .hero-tagline{font-size:clamp(.9rem,2vw,1.3rem);font-style:italic;color:var(--cream);opacity:0;margin-top:1.5vh;display:block;animation:fadeUp .8s ease 3.5s forwards;}
-.hero-cta-row{display:flex;gap:15px;flex-wrap:wrap;margin-top:3vh;opacity:0;animation:fadeUp .8s ease 3.8s forwards;}
-.hero-btn{font-family:'Fredoka One',cursive;font-size:clamp(.85rem,1.8vw,1.1rem);letter-spacing:2px;padding:14px 30px;border:none;cursor:pointer;position:relative;overflow:hidden;transition:transform .2s;}
-.hero-btn:active{transform:scale(.95);}
-.hero-btn.primary{background:var(--gold);color:#000;}
-.hero-btn.secondary{background:transparent;border:2px solid var(--gold);color:var(--gold);}
-.hero-btn::after{content:'';position:absolute;inset:0;background:#fff;opacity:0;transition:opacity .2s;}
-.hero-btn:hover::after{opacity:.15;}
-.hero-scroll-hint{position:absolute;bottom:3vh;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn .8s ease 4.5s forwards;}
-.scroll-emoji{font-size:1.5rem;animation:scrollBob 1.5s ease-in-out infinite;}
-@keyframes scrollBob{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
-.scroll-txt{font-family:'Fredoka One',cursive;font-size:.6rem;letter-spacing:4px;color:rgba(255,215,0,.4);}
-@media(max-width:768px){
-  .hero-scroll-hint{bottom:38vh;background:rgba(10,0,5,.6);padding:10px 20px;border-radius:50px;border:1px solid rgba(255,215,0,.25);}
-  .scroll-txt{font-size:.65rem;color:rgba(255,215,0,.8);}
-  .scroll-emoji{font-size:1.3rem;}
-}
 
 .float-emoji{position:fixed;pointer-events:none;z-index:4;font-size:clamp(1.5rem,3vw,2.5rem);animation:floatUp var(--dur,8s) linear var(--del,0s) infinite;opacity:0;}
 @keyframes floatUp{0%{transform:translateY(110vh) rotate(0deg);opacity:0;}5%{opacity:.7;}90%{opacity:.5;}100%{transform:translateY(-10vh) rotate(var(--rot,360deg));opacity:0;}}
@@ -265,14 +249,6 @@ footer{position:relative;z-index:10;text-align:center;padding:5vh 5vw;border-top
     <div class="hero-name" id="hero-name-el"></div>
     <span class="hero-turns">IS TURNING 11! 🎂</span>
     <span class="hero-tagline">"He didn't choose cricket. Cricket chose him."</span>
-    <!-- ✅ FIX: Removed RSVP button, kept only Countdown button -->
-    <div class="hero-cta-row">
-      <button class="hero-btn primary" onclick="event.stopPropagation();document.getElementById('cd-section').scrollIntoView({behavior:'smooth'})">⏳ Countdown</button>
-    </div>
-  </div>
-  <div class="hero-scroll-hint">
-    <div class="scroll-emoji">👇</div>
-    <div class="scroll-txt">SCROLL DOWN</div>
   </div>
 </div>
 <div id="hero-flash-el" style="position:fixed;inset:0;z-index:500;background:#fff;opacity:0;pointer-events:none;transition:opacity .05s;"></div>
@@ -513,7 +489,7 @@ const rvEls=document.querySelectorAll('.rv,.rv-l,.rv-r');
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 rvEls.forEach(e=>io.observe(e));
 
-/* ✅ FIX: COUNTDOWN — 25 April 2026 at 6:00 PM IST (IST = UTC+5:30, so 6PM IST = 12:30 UTC) */
+/* COUNTDOWN — 25 April 2026 at 6:00 PM IST (UTC+5:30 = 12:30 UTC) */
 function tick(){
   const target=new Date('2026-04-25T12:30:00Z');
   const now=new Date();
@@ -524,7 +500,6 @@ function tick(){
     document.getElementById('cd-h').textContent='00';
     document.getElementById('cd-m').textContent='00';
     document.getElementById('cd-s').textContent='00';
-    // Show "It's time!" message when countdown hits zero
     const cdSection=document.getElementById('cd-section');
     const existing=cdSection.querySelector('.cd-party-msg');
     if(!existing){
@@ -736,7 +711,6 @@ window.addEventListener('scroll',()=>{if(hImg)hImg.style.transform=`translateY($
 
 function openMaps(){window.open('https://www.google.com/maps/search/?api=1&query=Tulasi+Vanam+Block-A+Kukatpally+Hyderabad+Telangana+500072','_blank');}
 
-/* placeholder — Firebase module below fills this in */
 window.trackBall=function(){};
 </script>
 
@@ -786,7 +760,6 @@ window.loadAdminStats=async function(){
   }catch(e){document.getElementById('admin-updated').textContent='Error loading stats';}
 };
 
-/* ADMIN PANEL — only shows if URL has ?admin=swojas */
 if(window.location.search.includes('admin=swojas')){
   const panel=document.createElement('div');
   panel.id='admin-panel';
